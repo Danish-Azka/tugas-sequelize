@@ -2,8 +2,8 @@ import Karyawan from "../models/karyawanModel.js";
 
 export const createKaryawan= async (req, res) => {
     try{
-        const { nama, noTelp, email} = req.body;
-        const karyawan = await Karyawan.create({ nama, noTelp, email});
+        const { nama, noTelp, email, divisi} = req.body;
+        const karyawan = await Karyawan.create({ nama, noTelp, email, divisi});
         res.status(201).json(karyawan)
     } catch (error) {
         res.status(500).json({ error: error.message})
@@ -29,6 +29,19 @@ export const getKaryawanById = async (req, res) => {
         res.status(500).json({error : error.message})
     }
 }
+
+export const getKaryawanByDivisi = async (req, res) => {
+    try{
+        const { divisi } = req.params;
+        const karyawan = await Karyawan.findAll({where : {divisi : divisi}});
+        if (!karyawan) return res.status(404).json({message: 'ga ada'});
+        res.status(200).json(karyawan)
+    } catch (error){
+        res.status(500).json({error : error.message})
+    }
+}
+
+
 
 export const updateKaryawan = async (req, res) => {
     try {

@@ -21,6 +21,10 @@ const Karyawan = db.define(
         type: DataTypes.STRING,
         allowNull: false
     },
+    divisi: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     },
     {
         tableName: "karyawan",

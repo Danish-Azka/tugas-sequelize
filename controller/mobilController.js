@@ -3,8 +3,8 @@ import Mobil from "../models/mobilModel.js";
 
 export const createMobil= async (req, res) => {
     try{
-        const { merk, model, platNomor, kapasitasPenumpang} = req.body;
-        const mobil = await Mobil.create({ merk, model, platNomor, kapasitasPenumpang});
+        const { merk, model, platNomor, kapasitasPenumpang, ClientId} = req.body;
+        const mobil = await Mobil.create({ merk, model, platNomor, kapasitasPenumpang, ClientId});
         res.status(201).json(mobil)
     } catch (error) {
         res.status(500).json({ error: error.message})
@@ -14,10 +14,10 @@ export const createMobil= async (req, res) => {
 export const getMobil = async (req, res) => {
     try{
         const mobil = await Mobil.findAll({
-            // include : {
-            //     model: Client,
-            //     as: "Client",
-            // }
+            include : {
+                model: Client,
+                as: "Client",
+            }
         })
         res.status(200).json(mobil)
     }catch (error){

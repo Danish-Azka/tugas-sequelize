@@ -1,10 +1,12 @@
 import Transaksi from "../models/transaksi.js";
 import Client from "../models/clientModel.js";
 import Mobil from "../models/mobilModel.js";
+import Karyawan from "../models/karyawanModel.js";
+
 export const createTransaksi= async (req, res) => {
     try{
-        const { tanggalPeminjaman, batasPeminjaman, durasiSewa, totalBiaya, MobilId, ClientId} = req.body;
-        const transaksi = await Transaksi.create({ tanggalPeminjaman, batasPeminjaman, durasiSewa, totalBiaya, MobilId , ClientId});
+        const { tanggalPeminjaman, batasPeminjaman, durasiSewa, totalBiaya, MobilId, ClientId, KaryawanId} = req.body;
+        const transaksi = await Transaksi.create({ tanggalPeminjaman, batasPeminjaman, durasiSewa, totalBiaya, MobilId , ClientId, KaryawanId});
         res.status(201).json(transaksi)
     } catch (error) {
         res.status(500).json({ error: error.message})
@@ -22,6 +24,10 @@ export const getTransaksi = async (req, res) => {
                 },{
                      model: Client,
                     as : 'Client',
+                    required:true
+                },{
+                     model: Karyawan,
+                    as : 'Karyawan',
                     required:true
                 }
              

@@ -6,6 +6,6 @@ mobilRoute.post("/mobil/post", createMobil)
 mobilRoute.get("/mobil/get", getMobil)
 mobilRoute.get("/mobil/get/:id", getMobilById)
 mobilRoute.put("/mobil/update/:id", updateMobil)
-mobilRoute.delete("/mobile/delete/:id", deleteMobil)
+mobilRoute.delete("/mobil/delete/:id", deleteMobil)
 
 export{mobilRoute}

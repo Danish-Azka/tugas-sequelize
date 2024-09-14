@@ -3,6 +3,7 @@ import db from '../utils/connection.js'
 import Mobil from "./mobilModel.js";
 import Client from "./clientModel.js";
 import Karyawan from "./karyawanModel.js";
+import Pengembalian from "./pengembalianModel.js";
 
 const Transaksi = db.define(
     
@@ -35,8 +36,18 @@ const Transaksi = db.define(
         tableName: "transaksi",
     }
 );
-//CLIENT
 
+//MOBIL
+Client.hasMany(Mobil, {
+    onDelete : "CASCADE",
+    onUpdate : "CASCADE"
+})
+
+Mobil.belongsTo(Client, {
+    foreignKey : "ClientId",
+    onDelete : "CASCADE",
+    onUpdate : "CASCADE"
+})
 
 //TRANSAKSI
 Client.hasOne(Transaksi, {
@@ -62,36 +73,65 @@ Transaksi.belongsTo(Mobil, {
     onUpdate: "CASCADE",
 })
 
-// Mobil.hasOne(Transaksi, {
-//     onDelete: "CASCADE",
-//     onUpdate: "CASCADE"
-// });
+Karyawan.hasOne(Transaksi, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
 
-// Transaksi.belongsTo(Mobil, {
-//     foreignKey: "MobilId",
+Transaksi.belongsTo(Karyawan, {
+    foreignKey: "KaryawanId",
 
-//     onDelete: "CASCADE",
-//     onUpdate: "CASCADE",
-// })
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+})
 
-// Karyawan.hasMany(Transaksi, {
-//     onDelete: "CASCADE",
-//     onUpdate: "CASCADE",
-// })
+//PENGEMBALIAN
+Client.hasOne(Pengembalian, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
 
-// Transaksi.belongsTo(Karyawan, {
-//     foreignKey: "KaryawanId",
+Pengembalian.belongsTo(Client, {
+    foreignKey: "ClientId",
 
-//     onDelete: "CASCADE",
-//     onUpdate: "CASCADE",
-// })
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+})
+Mobil.hasOne(Pengembalian, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
 
-//MOBIL
+Pengembalian.belongsTo(Mobil, {
+    foreignKey: "MobilId",
 
-//
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+})
 
+Transaksi.hasOne(Pengembalian, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
 
+Pengembalian.belongsTo(Transaksi, {
+    foreignKey: "TransaksiId",
 
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+})
+
+Karyawan.hasOne(Pengembalian, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE"
+});
+
+Pengembalian.belongsTo(Karyawan, {
+    foreignKey: "KaryawanId",
+
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+})
 
 export default Transaksi;
     
