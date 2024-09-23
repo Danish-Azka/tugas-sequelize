@@ -1,46 +1,34 @@
 import { DataTypes } from "sequelize";
 import db from '../utils/connection.js'
 
-const Mobil = db.define(
-    
-    "Mobil", {
+const Admin = db.define(
+    "Admin", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    merk: {
+    nama: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    model: {
+    email: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    platNomor: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    kapasitasPenumpang: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    harga: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    gambar: {
+    password: {
         type: DataTypes.STRING,
         allowNull: false
     },
     },
     {
-        tableName: "mobil",
+        tableName: "admin",
     }
 );
 
 
 
-export default Mobil;
+
+export default Admin;
     

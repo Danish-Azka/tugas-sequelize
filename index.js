@@ -7,6 +7,7 @@ import { transaksiRoute } from "./routes/transaksiRoute.js";
 import { mobilRoute } from "./routes/mobilRoute.js";
 import bodyParser from "body-parser";
 import { pengembalianRoute } from "./routes/pengembalianRoute.js";
+import { adminRoute } from "./routes/adminRoute.js";
 
 const port = process.env.PORT
 
@@ -23,6 +24,7 @@ app.use(karyawanRoute)
 app.use(transaksiRoute)
 app.use(mobilRoute)
 app.use(pengembalianRoute)
+app.use(adminRoute)
 
 app.listen(port, () => {
     console.log("mission statooo")

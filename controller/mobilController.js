@@ -3,8 +3,8 @@ import Mobil from "../models/mobilModel.js";
 
 export const createMobil= async (req, res) => {
     try{
-        const { merk, model, platNomor, kapasitasPenumpang, ClientId} = req.body;
-        const mobil = await Mobil.create({ merk, model, platNomor, kapasitasPenumpang, ClientId});
+        const { merk, model, platNomor, kapasitasPenumpang, harga, gambar,ClientId } = req.body;
+        const mobil = await Mobil.create({ merk, model, platNomor, kapasitasPenumpang, harga, gambar,ClientId });
         res.status(201).json(mobil)
     } catch (error) {
         res.status(500).json({ error: error.message})
@@ -39,12 +39,12 @@ export const getMobilById = async (req, res) => {
 export const updateMobil = async (req, res) => {
     try {
         const { id } = req.params;
-        const { merk, model, platNomor, kapasitasPenumpang } = req.body;
+        const { merk, model, platNomor, kapasitasPenumpang, harga, gambar,ClientId  } = req.body;
         const mobil = await Mobil.findByPk(id);
         if (!mobil) {
             return res.status(404).json({ message: 'mobil tidak ditemukan' });
         }
-        await mobil.update({ merk, model, platNomor, kapasitasPenumpang }, {
+        await mobil.update({ merk, model, platNomor, kapasitasPenumpang, harga, gambar,ClientId  }, {
             where: { id }
         });
         const updatedMobil = await Mobil.findByPk(id);

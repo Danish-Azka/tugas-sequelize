@@ -54,12 +54,12 @@ export const getPengembalianById = async (req, res) => {
 export const updatePengembalian = async (req, res) => {
     try {
         const { id } = req.params;
-        const { tanggalPeminjaman, batasPeminjaman, durasiSewa, totalBiaya } = req.body;
+        const { tanggalPengembalian,TransaksiId, MobilId , ClientId, KaryawanId } = req.body;
         const pengembalian = await Pengembalian.findByPk(id);
         if (!pengembalian) {
             return res.status(404).json({ message: 'pengembalian tidak ditemukan' });
         }
-        await pengembalian.update({ tanggalPeminjaman, batasPeminjaman, durasiSewa, totalBiaya }, {
+        await pengembalian.update({ tanggalPengembalian,TransaksiId, MobilId , ClientId, KaryawanId }, {
             where: { id }
         });
         const updatedPengembalian = await Pengembalian.findByPk(id);
