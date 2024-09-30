@@ -2,6 +2,7 @@ import Transaksi from "../models/transaksi.js";
 import Client from "../models/clientModel.js";
 import Mobil from "../models/mobilModel.js";
 import Pengembalian from "../models/pengembalianModel.js";
+import Karyawan from "../models/karyawanModel.js";
 
 export const createPengembalian= async (req, res) => {
     try{
@@ -29,6 +30,11 @@ export const getPengembalian = async (req, res) => {
                 {
                      model: Mobil,
                     as : 'Mobil',
+                    required:true
+                },
+                {
+                     model: Karyawan,
+                    as : 'Karyawan',
                     required:true
                 },
              

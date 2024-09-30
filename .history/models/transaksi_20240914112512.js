@@ -68,6 +68,7 @@ Mobil.hasOne(Transaksi, {
 
 Transaksi.belongsTo(Mobil, {
     foreignKey: "MobilId",
+
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
 })
