@@ -2,8 +2,8 @@ import Admin from '../models/adminModel.js'
 
 export const createAdmin= async (req, res) => {
     try{
-        const { nama, email, password, photo} = req.body;
-        const admin = await Admin.create({ nama, email, password, photo});
+        const { nama, email, password} = req.body;
+        const admin = await Admin.create({ nama, email, password});
         res.status(201).json(admin)
     } catch (error) {
         res.status(500).json({ error: error.message})

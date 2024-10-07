@@ -21,7 +21,7 @@ const Admin = db.define(
         type: DataTypes.STRING,
         allowNull: false
     },
-    photo: {
+    : {
         type: DataTypes.STRING,
         allowNull: false
     },
