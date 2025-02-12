@@ -1,0 +1,10 @@
+import { DataTypes } from "sequelize";
+import db from '../utils/connection.js';
+import Order from "./orderModel.js";
+import Cart from "./cart.js";
+
+const Kwitansi = db.define("Kwitansi", {}, { tableName: "kwitansi" });
+
+Cart.belongsToMany(Order, { through: Kwitansi, foreignKey: "CartId" });
+
+export default Kwitansi;

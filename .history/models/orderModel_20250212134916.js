@@ -1,0 +1,29 @@
+import { DataTypes } from "sequelize";
+import db from '../utils/connection.js'
+import Mobil from "./mobilModel.js";
+import Client from "./clientModel.js";
+import Karyawan from "./karyawanModel.js";
+import Pengembalian from "./pengembalianModel.js";
+
+const Transaksi = db.define(
+    
+    "Transaksi", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
+    totalPembayaran : {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    metodeBayar : {
+        type: DataTypes.ENUM('GearUpPay', 'TF Bank', 'Dana', 'Crypto') ,
+        allowNull: false
+    }
+    },
+    {
+        tableName: "transaksi",
+    }
+);
