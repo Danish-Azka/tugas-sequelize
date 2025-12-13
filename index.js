@@ -32,6 +32,6 @@ app.use(cartRoute)
 app.use(buyerRoute)
 
 
-app.listen(port, () => {
+app.listen(3009, () => {
     console.log("mission statooo")
 })
